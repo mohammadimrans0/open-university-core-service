@@ -1,0 +1,159 @@
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:16:38.608Z'
+}
+{
+  message: 'app is listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:16:38.625Z'
+}
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:17:50.022Z'
+}
+{
+  message: 'app is listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:17:50.031Z'
+}
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:17:54.479Z'
+}
+{
+  message: 'app is listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:17:54.486Z'
+}
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:18:07.221Z'
+}
+{
+  message: 'app is listening on port 5000',
+  level: 'info',
+  label: 'right meow!',
+  timestamp: '2023-06-08T09:18:07.253Z'
+}
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  label: 'university-management-application',
+  timestamp: '2023-06-08T09:18:21.599Z'
+}
+{
+  message: 'app is listening on port 5000',
+  level: 'info',
+  label: 'university-management-application',
+  timestamp: '2023-06-08T09:18:21.614Z'
+}
+[university-management-application] info: Database is connected successfully Thu Jun 08 2023 15:19:23
+[university-management-application] info: app is listening on port 5000 Thu Jun 08 2023 15:19:23
+[university-management-application] info: Database is connected successfully Thu Jun 08 2023 15:19:27
+[university-management-application] info: app is listening on port 5000 Thu Jun 08 2023 15:19:27
+[university-management-application] info: Database is connected successfully Thu Jun 08 2023 15:19:44
+[university-management-application] info: app is listening on port 5000 Thu Jun 08 2023 15:19:44
+[university-management-application] info: Database is connected successfully Thu Jun 08 2023 15:19:54
+[university-management-application] info: app is listening on port 5000 Thu Jun 08 2023 15:19:54
+[] info: Database is connected successfully Thu Jun 08 2023 15:20:22
+[] info: app is listening on port 5000 Thu Jun 08 2023 15:20:22
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:20:26
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:20:26
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:20:36
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:20:36
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:13
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:13
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:16
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:16
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:23
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:23
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:27
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:27
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:30
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:30
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:35
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:35
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:37
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:37
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:46
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:46
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:49
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:49
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:52
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:52
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:55
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:55
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:36:59
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:36:59
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:4
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:4
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:6
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:6
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:13
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:13
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:23
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:23
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:30
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:30
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:35
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:35
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:39
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:39
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:37:57
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:37:57
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:2
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:2
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:8
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:8
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:13
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:13
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:19
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:19
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:24
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:24
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:27
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:27
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:29
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:38:37
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:38:37
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:40:25
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:40:25
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:40:34
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:40:34
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:40:38
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:40:38
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:40:41
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:40:41
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:40:45
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:40:45
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:47:53
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:47:53
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:49:39
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:49:39
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:49:47
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:49:47
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:49:52
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:49:52
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:21
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:21
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:29
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:29
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:36
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:36
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:40
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:40
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:43
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:43
+[UMS] info: Database is connected successfully Thu Jun 08 2023 15:50:48
+[UMS] info: app is listening on port 5000 Thu Jun 08 2023 15:50:48
