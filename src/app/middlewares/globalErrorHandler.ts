@@ -1,10 +1,10 @@
 import { ErrorRequestHandler } from 'express'
-import { IGenericErrorMessage } from '../interfaces/error'
-import handleValidationError from '../errors/handleValidationError'
-import ApiError from '../errors/ApiError'
-import config from '../config'
+import { IGenericErrorMessage } from '../../interfaces/error'
+import handleValidationError from '../../errors/handleValidationError'
+import ApiError from '../../errors/ApiError'
+import config from '../../config'
 import { ZodError } from 'zod'
-import handleZodError from '../errors/handleZodError'
+import handleZodError from '../../errors/handleZodError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500
