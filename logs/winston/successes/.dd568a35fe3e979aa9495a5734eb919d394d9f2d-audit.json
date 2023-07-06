@@ -1,15 +1,15 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 14
-    },
-    "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\.dd568a35fe3e979aa9495a5734eb919d394d9f2d-audit.json",
-    "files": [
-        {
-            "date": 1687765596884,
-            "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUs-2023-26-06-13-success.log",
-            "hash": "d3b867d8b27a8faf77ae43339254edc7cf38e9a8509254bce11b926432d75f34"
-        }
-    ],
-    "hashType": "sha256"
+  "keep": {
+    "days": true,
+    "amount": 14
+  },
+  "auditLog": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\.dd568a35fe3e979aa9495a5734eb919d394d9f2d-audit.json",
+  "files": [
+    {
+      "date": 1687765596884,
+      "name": "C:\\Projects\\open-university\\open-university-auth-service\\logs\\winston\\successes\\OUs-2023-26-06-13-success.log",
+      "hash": "d3b867d8b27a8faf77ae43339254edc7cf38e9a8509254bce11b926432d75f34"
+    }
+  ],
+  "hashType": "sha256"
 }
