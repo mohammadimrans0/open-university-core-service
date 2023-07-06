@@ -1,32 +1,32 @@
+/* eslint-disable no-console */
 import mongoose from 'mongoose'
 import app from './app'
 import config from './config'
-import { infoLogger, errorLogger } from './shared/logger'
 import { Server } from 'http'
 
 let server: Server
 
 process.on('uncaughtException', error => {
-  errorLogger.error(error)
+  console.log(error)
   process.exit(1)
 })
 
 async function bootstrap() {
   try {
     await mongoose.connect(config.database_url as string)
-    infoLogger.info('Database is connected successfully')
+    console.log('Database is connected successfully')
 
     server = app.listen(config.port, () => {
-      infoLogger.info(`app is listening on port ${config.port}`)
+      console.log(`app is listening on port ${config.port}`)
     })
   } catch (error) {
-    errorLogger.error('Failed to connect database', error)
+    console.log('Failed to connect database', error)
   }
 
   process.on('unhandledRejection', error => {
     if (error) {
       server.close(() => {
-        errorLogger.error(error)
+        console.log(error)
         process.exit(1)
       })
     } else {
@@ -38,7 +38,7 @@ async function bootstrap() {
 bootstrap()
 
 process.on('SIGTERM', () => {
-  infoLogger.info('SIGTERM is received')
+  console.log('SIGTERM is received')
   if (server) {
     server.close()
   }
