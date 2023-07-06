@@ -18,7 +18,7 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
       required: true,
       enum: academicSemesterTitles,
     },
-    year: { type: Number, required: true },
+    year: { type: String, required: true },
     code: {
       type: String,
       required: true,
@@ -35,7 +35,12 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
       enum: academicSemesterMonths,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
+  }
 )
 
 academicSemesterSchema.pre('save', async function (next) {

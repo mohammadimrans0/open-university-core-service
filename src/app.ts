@@ -1,8 +1,9 @@
-import express, { Application, Request, Response } from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 const app: Application = express()
-import globalErrorHandler from './app/middlewares/globalErrorHandler'
+import globalErrorHandler from './app/middleware/globalErrorHandler'
 import routes from './app/routes'
+import httpStatus from 'http-status'
 
 app.use(cors())
 
@@ -19,5 +20,20 @@ app.get('/', async (req: Request, res: Response) => {
 
 // global error handle
 app.use(globalErrorHandler)
+
+// handle not found
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    success: false,
+    message: 'Data NOt Found',
+    errorMessages: [
+      {
+        path: req.originalUrl,
+        message: 'Invalid Api Request',
+      },
+    ],
+  })
+  next()
+})
 
 export default app
