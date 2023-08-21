@@ -1,35 +1,32 @@
-import express, { Application, NextFunction, Request, Response } from 'express'
 import cors from 'cors'
-const app: Application = express()
+import express, { Application, NextFunction, Request, Response } from 'express'
+import httpStatus from 'http-status'
 import globalErrorHandler from './app/middleware/globalErrorHandler'
 import routes from './app/routes'
-import httpStatus from 'http-status'
+
+
+const app: Application = express()
 
 app.use(cors())
 
-// parser
+//parser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/api/v1/', routes)
+app.use('/api/v1', routes)
 
-// testing
-app.get('/', async (req: Request, res: Response) => {
-  res.send('working successfully')
-})
-
-// global error handle
+//global error handler
 app.use(globalErrorHandler)
 
-// handle not found
+//handle not found
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
-    message: 'Data NOt Found',
+    message: 'Not Found',
     errorMessages: [
       {
         path: req.originalUrl,
-        message: 'Invalid Api Request',
+        message: 'API Not Found',
       },
     ],
   })
@@ -37,5 +34,3 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 })
 
 export default app
-
-// https://github.com/Programming-Hero-Web-Course4/l2a3-cow-hut-backend-assignment-mohammadimrans0

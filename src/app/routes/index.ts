@@ -1,15 +1,15 @@
-import express from 'express'
-import { UserRoutes } from '../modules/user/user.route'
+import express from 'express';
+import { AcademicSemesterRoutes } from '../modules/academicSemester/academicSemester.route';
 
-const router = express.Router()
+const router = express.Router();
 
 const moduleRoutes = [
+  // ... routes
   {
-    path: '/users',
-    route: UserRoutes,
-  },
-]
+    path: "/academic-semester",
+    routes: AcademicSemesterRoutes
+  }
+];
 
-moduleRoutes.forEach(route => router.use(route.path, route.route))
-
-export default router
+moduleRoutes.forEach(route => router.use(route.path, route.routes));
+export default router;
