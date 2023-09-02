@@ -6,7 +6,11 @@ import { paginationHelpers } from '../../../helpers/paginationHelper'
 import { IGenericResponse } from '../../../interfaces/common'
 import { IPaginationOptions } from '../../../interfaces/pagination'
 import prisma from '../../../shared/prisma'
-import { ICourseCreateData, ICourseFilterRequest, IPrerequisiteCourseRequest } from './course.interface'
+import {
+  ICourseCreateData,
+  ICourseFilterRequest,
+  IPrerequisiteCourseRequest,
+} from './course.interface'
 import { courseSearchableFields } from './course.constant'
 import { asyncForEach } from '../../../shared/utils'
 
@@ -26,12 +30,12 @@ const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
       await asyncForEach(
         preRequisiteCourses,
         async (preRequisiteCourse: IPrerequisiteCourseRequest) => {
-            await transactionClient.courseToPrerequisite.create({
-              data: {
-                courseId: result.id,
-                preRequisiteId: preRequisiteCourse.courseId,
-              },
-            })
+          await transactionClient.courseToPrerequisite.create({
+            data: {
+              courseId: result.id,
+              preRequisiteId: preRequisiteCourse.courseId,
+            },
+          })
         }
       )
     }
@@ -181,25 +185,31 @@ const updateOneInDB = async (
           coursePrerequisite.courseId && !coursePrerequisite.isDeleted
       )
 
-      await asyncForEach(deletePrerequisite, async (deletePreCourse: IPrerequisiteCourseRequest) => {
-        await transactionClient.courseToPrerequisite.deleteMany({
-          where: {
-            AND: [
-              { courseId: id },
-              { preRequisiteId: deletePreCourse.courseId },
-            ],
-          },
-        })
-      })
+      await asyncForEach(
+        deletePrerequisite,
+        async (deletePreCourse: IPrerequisiteCourseRequest) => {
+          await transactionClient.courseToPrerequisite.deleteMany({
+            where: {
+              AND: [
+                { courseId: id },
+                { preRequisiteId: deletePreCourse.courseId },
+              ],
+            },
+          })
+        }
+      )
 
-      await asyncForEach(newPrerequisite, async (createPrerequisite: IPrerequisiteCourseRequest) => {
-        await transactionClient.courseToPrerequisite.create({
-          data: {
-            courseId: id,
-            preRequisiteId: createPrerequisite.courseId,
-          },
-        })
-      })
+      await asyncForEach(
+        newPrerequisite,
+        async (createPrerequisite: IPrerequisiteCourseRequest) => {
+          await transactionClient.courseToPrerequisite.create({
+            data: {
+              courseId: id,
+              preRequisiteId: createPrerequisite.courseId,
+            },
+          })
+        }
+      )
     }
     return result
   })
@@ -245,19 +255,43 @@ const deleteByIdFromDB = async (id: string): Promise<Course> => {
   return result
 }
 
-const assignFaculty = async (id: string, payload: string[] ): Promise<CourseFaculty[]> => {
+const assignFaculty = async (
+  id: string,
+  payload: string[]
+): Promise<CourseFaculty[]> => {
   await prisma.courseFaculty.createMany({
-    data: payload.map((facultyId) => ({
+    data: payload.map(facultyId => ({
       courseId: id,
-      facultyId: facultyId
-    }))
+      facultyId: facultyId,
+    })),
   })
 
   const assignFacultiesData = await prisma.courseFaculty.findMany({
     where: { courseId: id },
-    include: {faculty: true}
+    include: { faculty: true },
   })
-  
+
+  return assignFacultiesData
+}
+
+const removeFaculty = async (
+  id: string,
+  payload: string[]
+): Promise<CourseFaculty[] | null> => {
+  await prisma.courseFaculty.deleteMany({
+    where: {
+      courseId: id,
+      facultyId: {
+        in: payload,
+      },
+    },
+  })
+
+  const assignFacultiesData = await prisma.courseFaculty.findMany({
+    where: { courseId: id },
+    include: { faculty: true },
+  })
+
   return assignFacultiesData
 }
 
@@ -267,5 +301,6 @@ export const CourseService = {
   getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
-  assignFaculty
+  assignFaculty,
+  removeFaculty,
 }

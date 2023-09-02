@@ -30,6 +30,18 @@ router.delete(
   CourseController.deleteByIdFromDB
 )
 
-router.post('/:id/assign-faculty', CourseController.assignFaculty)
+router.post(
+  '/:id/assign-faculty',
+  validateRequest(CourseValidation.assignOrRemoveFaculty),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  CourseController.assignFaculty
+)
+
+router.delete(
+  '/:id/remove-faculty',
+  validateRequest(CourseValidation.assignOrRemoveFaculty),
+  auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  CourseController.removeFaculty
+)
 
 export const CourseRoutes = router
