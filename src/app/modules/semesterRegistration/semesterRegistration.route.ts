@@ -11,6 +11,8 @@ router.get('/', SemesterRegistrationController.getAllFromDB)
 
 router.get('/:id', SemesterRegistrationController.getByIdFromDB)
 
+router.post('/start-registration', SemesterRegistrationController.startMyRegistration)
+
 router.post(
   '/',
   validateRequest(SemesterRegistrationValidation.create),
