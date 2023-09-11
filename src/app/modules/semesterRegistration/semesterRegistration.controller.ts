@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express'
 import httpStatus from 'http-status'
 import catchAsync from '../../../shared/catchAsync'
@@ -66,8 +67,72 @@ const deleteByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 })
 
 const startMyRegistration = catchAsync(async (req: Request, res: Response) => {
-  
+  const user = (req as any).user
+  const result = await SemesterRegistrationService.startMyRegistration(user.userId)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student SemesterRegistration started successfully',
+    data: result,
+  })
 })
+
+const enrollIntoCourse = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user
+  const result = await SemesterRegistrationService.enrollIntoCourse(
+    user.userId,
+    req.body
+  )
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student SemesterRegistration course enrolled successfully',
+    data: result,
+  })
+})
+
+const withdrawFromCourse = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user
+  const result = await SemesterRegistrationService.withdrewFromCourse(
+    user.userId,
+    req.body
+  )
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student Withdraw from successfully',
+    data: result,
+  })
+})
+
+const confirmMyRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const user = (req as any).user
+    const result = await SemesterRegistrationService.confirmMyRegistration(
+      user.userId
+    )
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Confirmed your registration!',
+      data: result,
+    })
+  }
+)
+
+const getMyRegistration = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user
+  const result = await SemesterRegistrationService.getMyRegistration(
+    user.userId
+  )
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'My registration data fetched!',
+    data: result,
+  })
+})
+
 
 export const SemesterRegistrationController = {
   insertIntoDB,
@@ -75,5 +140,9 @@ export const SemesterRegistrationController = {
   getByIdFromDB,
   updateOneInDB,
   deleteByIdFromDB,
-  startMyRegistration
+  startMyRegistration,
+  enrollIntoCourse,
+  withdrawFromCourse,
+  confirmMyRegistration,
+  getMyRegistration
 }
