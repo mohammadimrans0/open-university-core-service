@@ -17,10 +17,14 @@ model AcademicSemester {
   code String
   startMonth String
   endMonth String
+  isCurrent Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   student Student[]
   semesterRegistration SemesterRegistration[]
+  studentEnrolledCourse             StudentEnrolledCourse[]
+  studentEnrolledCourseMark         StudentEnrolledCourseMark[]
+  studentSemesterPayment           StudentSemesterPayment[]
 
   @@map("academic_semester")
 }
@@ -79,6 +83,9 @@ model Student {
   academicFacultyId String
   studentSemesterRegistration StudentSemesterRegistration[]
   studentSemesterRegistrationCourse StudentSemesterRegistrationCourse[]
+  studentEnrolledCourse             StudentEnrolledCourse[]
+  studentEnrolledCourseMark        StudentEnrolledCourseMark[]
+  studentSemesterPayment           StudentSemesterPayment[]
 
   @@map("student")
 }
@@ -145,6 +152,7 @@ model Course {
   preRequisiteFor CourseToPrerequisite[] @relation("PrerequisiteToCourse")
   faculties CourseFaculty[]
   offeredCourses OfferedCourse[]
+  studentEnrolledCourse             StudentEnrolledCourse[]
 
   @@map("course")
 }
@@ -288,6 +296,60 @@ model StudentSemesterRegistrationCourse {
   @@map("student_semester_registration_course")
 }
 
+model StudentEnrolledCourse {
+  id                         String                       @id @default(uuid())
+  createdAt                  DateTime                     @default(now())
+  updatedAt                  DateTime                     @updatedAt
+  studentId                  String
+  student                    Student                      @relation(fields: [studentId], references: [id])
+  courseId                   String
+  course                     Course                       @relation(fields: [courseId], references: [id])
+  academicSemesterId         String
+  academicSemester           AcademicSemester             @relation(fields: [academicSemesterId], references: [id])
+  grade                      String?
+  point                      Float?                       @default(0)
+  totalMarks                 Int?                         @default(0)
+  status                     StudentEnrolledCourseStatus? @default(ONGOING)
+  studentEnrolledCourseMarks StudentEnrolledCourseMark[]
+
+  @@map("student_enrolled_course")
+}
+
+model StudentEnrolledCourseMark {
+  id                      String                @id @default(uuid())
+  createdAt               DateTime              @default(now())
+  updatedAt               DateTime              @updatedAt
+  studentId               String
+  student                 Student               @relation(fields: [studentId], references: [id])
+  studentEnrolledCourseId String
+  studentEnrolledCourse   StudentEnrolledCourse @relation(fields: [studentEnrolledCourseId], references: [id])
+  academicSemesterId      String
+  academicSemester        AcademicSemester      @relation(fields: [academicSemesterId], references: [id])
+  grade                   String?
+  marks                   Int?
+  examType                ExamType?             @default(MIDTERM)
+
+  @@map("student_enrolled_course_mark")
+}
+
+model StudentSemesterPayment {
+  id                 String           @id @default(uuid())
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  studentId          String
+  student            Student          @relation(fields: [studentId], references: [id])
+  academicSemesterId String
+  academicSemester   AcademicSemester @relation(fields: [academicSemesterId], references: [id])
+
+  fullPaymentAmount    Int?           @default(0)
+  partialPaymentAmount Int?           @default(0)
+  totalDueAmount       Int?           @default(0)
+  totalPaidAmount      Int?           @default(0)
+  paymentStatus        PaymentStatus? @default(PENDING)
+
+  @@map("student_semester_payment")
+}
+
 enum SemesterRegistrationStatus {
   UPCOMING
   ONGOING
@@ -302,4 +364,21 @@ enum WeekDays {
   WEDNESDAY
   THURSDAY
   FRIDAY
+}
+
+enum StudentEnrolledCourseStatus {
+  ONGOING
+  COMPLETED
+  WITHDRAWN
+}
+
+enum ExamType {
+  MIDTERM
+  FINAL
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL_PAID
+  FULL_PAID
 }
