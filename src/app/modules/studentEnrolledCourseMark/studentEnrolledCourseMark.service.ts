@@ -1,5 +1,10 @@
-import { ExamType, PrismaClient } from "@prisma/client"
+import { ExamType, PrismaClient, StudentEnrolledCourseMark } from "@prisma/client"
 import { DefaultArgs, PrismaClientOptions } from "@prisma/client/runtime/library"
+import { IStudentEnrolledCourseMarkFilterRequest } from "./studentEnrolledCourseMark.interface"
+import { IPaginationOptions } from "../../../interfaces/pagination"
+import prisma from "../../../shared/prisma"
+import { paginationHelpers } from "../../../helpers/paginationHelper"
+import { IGenericResponse } from "../../../interfaces/common"
 
 const createStudentEnrolledCourseDefaultMark = async (
   prismaClient: Omit<
@@ -90,8 +95,52 @@ const createStudentEnrolledCourseDefaultMark = async (
     }
 }
 
-const updateStudentMark = async (payload: any) => {
-    console.log(payload)
+const getAllFromDB = async (
+  filters: IStudentEnrolledCourseMarkFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<StudentEnrolledCourseMark[]>> => {
+  const { limit, page } = paginationHelpers.calculatePagination(options)
+
+  const marks = await prisma.studentEnrolledCourseMark.findMany({
+    where: {
+      student: {
+        id: filters.studentId,
+      },
+      academicSemester: {
+        id: filters.academicSemesterId,
+      },
+      studentEnrolledCourse: {
+        course: {
+          id: filters.courseId,
+        },
+      },
+    },
+    include: {
+      studentEnrolledCourse: {
+        include: {
+          course: true,
+        },
+      },
+      student: true,
+    },
+  })
+
+  return {
+    meta: {
+      total: marks.length,
+      page,
+      limit,
+    },
+    data: marks,
+  }
 }
 
-export const StudentEnrolledCourseMarkService = {createStudentEnrolledCourseDefaultMark, updateStudentMark}
+const updateStudentMark = async (payload: any) => {
+  console.log(payload)
+}
+
+export const StudentEnrolledCourseMarkService = {
+  createStudentEnrolledCourseDefaultMark,
+  getAllFromDB,
+  updateStudentMark,
+}
