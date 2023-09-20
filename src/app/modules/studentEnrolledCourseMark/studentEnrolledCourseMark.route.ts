@@ -15,4 +15,9 @@ router.patch(
   StudentEnrolledCourseMarkController.updateStudentMark
 )
 
+router.patch(
+  '/update-final-mark',
+  StudentEnrolledCourseMarkController.updateFinalMark
+)
+
 export const StudentEnrolledCourseMarkRoutes = router

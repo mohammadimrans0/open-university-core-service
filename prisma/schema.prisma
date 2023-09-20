@@ -12,7 +12,7 @@ datasource db {
 
 model AcademicSemester {
   id String @id @default(uuid())
-  year Int
+  year String
   title String
   code String
   startMonth String
@@ -86,6 +86,7 @@ model Student {
   studentEnrolledCourse             StudentEnrolledCourse[]
   studentEnrolledCourseMark        StudentEnrolledCourseMark[]
   studentSemesterPayment           StudentSemesterPayment[]
+  studentAcademicInfo   StudentAcademicInfo[]
 
   @@map("student")
 }
@@ -348,6 +349,18 @@ model StudentSemesterPayment {
   paymentStatus        PaymentStatus? @default(PENDING)
 
   @@map("student_semester_payment")
+}
+
+model StudentAcademicInfo {
+  id                 String           @id @default(uuid())
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  studentId String
+  student Student @relation(fields: [studentId], references: [id])
+  totalCompletedCredit Int? @default(0)
+  cgpa Float? @default(0)
+
+  @@map("student_academic_info")
 }
 
 enum SemesterRegistrationStatus {

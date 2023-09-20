@@ -15,6 +15,12 @@ router.get(
 
 router.get('/', SemesterRegistrationController.getAllFromDB)
 
+router.get(
+  '/get-my-semester-courses',
+  auth(ENUM_USER_ROLE.STUDENT),
+  SemesterRegistrationController.getMySemesterRegCourse
+)
+
 router.get('/:id', SemesterRegistrationController.getByIdFromDB)
 
 router.post('/start-registration', SemesterRegistrationController.startMyRegistration)

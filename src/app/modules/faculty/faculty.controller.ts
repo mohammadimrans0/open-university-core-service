@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express'
 import httpStatus from 'http-status'
 import catchAsync from '../../../shared/catchAsync'
@@ -88,6 +89,20 @@ const removeCourse = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
+const myCourse = catchAsync(async (req: Request, res: Response) => {
+  const user = (req as any).user
+  const filter = pick(req.query, ['academicSemesterId', 'courseId'])
+
+  const result = await FacultyService.myCourse(user, filter)
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'My courses data fetched successfully!',
+    data: result,
+  })
+})
+
 export const FacultyController = {
   insertIntoDB,
   getAllFromDB,
@@ -95,5 +110,6 @@ export const FacultyController = {
   updateOneInDB,
   deleteByIdFromDB,
   assignCourse,
-  removeCourse
+  removeCourse,
+  myCourse,
 }

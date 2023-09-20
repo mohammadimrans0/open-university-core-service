@@ -9,6 +9,12 @@ const router = express.Router()
 
 router.get('/', FacultyController.getAllFromDB)
 
+router.get(
+  '/my-course',
+  auth(ENUM_USER_ROLE.FACULTY),
+  FacultyController.myCourse
+)
+
 router.get('/:id', FacultyController.getByIdFromDB)
 
 router.post(
