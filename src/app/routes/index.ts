@@ -13,68 +13,73 @@ import { OfferedCourseSectionRoutes } from '../modules/offeredCourseSection/offe
 import { OfferedCourseClassScheduleRoutes } from '../modules/offeredCourseClassSchedule/offeredCourseClassSchedule.route';
 import { StudentEnrolledCourseMarkRoutes } from '../modules/studentEnrolledCourseMark/studentEnrolledCourseMark.route';
 import { StudentEnrolledCourseRoutes } from '../modules/studentEnrolledCourse/studentEnrolledCourse.route';
+import { StudentSemesterPaymentRoutes } from '../modules/studentSemesterPayment/studentSemesterPayment.route';
 
 const router = express.Router();
 
 const moduleRoutes = [
   // ... routes
   {
-    path: "/academic-semester",
-    routes: AcademicSemesterRoutes
+    path: '/academic-semesters',
+    route: AcademicSemesterRoutes,
   },
   {
-    path: "/academic-department",
-    routes: AcademicDepartmentRoutes
+    path: '/academic-faculties',
+    route: AcademicFacultyRoutes,
   },
   {
-    path: "/academic-faculty",
-    routes: AcademicFacultyRoutes
+    path: '/academic-departments',
+    route: AcademicDepartmentRoutes,
   },
   {
-    path: "/student",
-    routes: StudentRoutes
+    path: '/faculties',
+    route: FacultyRoutes,
   },
   {
-    path: "/faculty",
-    routes: FacultyRoutes
+    path: '/students',
+    route: StudentRoutes,
   },
   {
-    path: "/building",
-    routes: BuildingRoutes
+    path: '/buildings',
+    route: BuildingRoutes,
   },
   {
-    path: "/room",
-    routes: RoomRoutes
+    path: '/rooms',
+    route: RoomRoutes,
   },
   {
-    path: "/course",
-    routes: CourseRoutes
+    path: '/courses',
+    route: CourseRoutes,
   },
   {
-    path: "/semester-registration",
-    routes: SemesterRegistrationRoutes
+    path: '/semester-registrations',
+    route: SemesterRegistrationRoutes,
   },
   {
-    path: "/offered-course",
-    routes: OfferedCourseRoutes
+    path: '/offered-courses',
+    route: OfferedCourseRoutes,
   },
   {
-    path: "/offered-course-section",
-    routes: OfferedCourseSectionRoutes
+    path: '/offered-course-sections',
+    route: OfferedCourseSectionRoutes,
   },
   {
-    path: "/offered-course-class-schedule",
-    routes: OfferedCourseClassScheduleRoutes
+    path: '/offered-course-class-schedules',
+    route: OfferedCourseClassScheduleRoutes,
   },
   {
-    path: "/student-enrolled-course",
-    routes: StudentEnrolledCourseRoutes
+    path: '/student-enrolled-courses',
+    route: StudentEnrolledCourseRoutes,
   },
   {
-    path: "/student-enrolled-course-mark",
-    routes: StudentEnrolledCourseMarkRoutes
+    path: '/student-enrolled-course-marks',
+    route: StudentEnrolledCourseMarkRoutes,
   },
-];
+  {
+    path: '/student-semester-payments',
+    route: StudentSemesterPaymentRoutes
+  },
+]
 
-moduleRoutes.forEach(route => router.use(route.path, route.routes));
+moduleRoutes.forEach(route => router.use(route.path, route.route));
 export default router;

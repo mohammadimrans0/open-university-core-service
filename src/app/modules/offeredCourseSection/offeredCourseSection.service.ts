@@ -230,8 +230,6 @@ const deleteByIdFromDB = async (id: string): Promise<OfferedCourseSection> => {
   return result
 }
 
-const myCourse = async()
-
 export const OfferedCourseSectionService = {
   insertIntoDB,
   getAllFromDB,

@@ -5,7 +5,8 @@ import ApiError from '../../errors/ApiError'
 import config from '../../config'
 import { ZodError } from 'zod'
 import handleZodError from '../../errors/handleZodError'
-import handleCastError from '../../errors/handleCastError'
+import { Prisma } from '@prisma/client'
+import handleClientError from '../../errors/handleClientError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
   let statusCode = 500
@@ -22,8 +23,8 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res) => {
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
-  } else if (error?.name === 'CastError') {
-    const simplifiedError = handleCastError(error)
+  } else if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    const simplifiedError = handleClientError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
