@@ -1,4 +1,4 @@
 export type IRoomFilterRequest = {
-  searchTerm?: string | undefined
-  buildingId?: string | undefined
+    searchTerm?: string | undefined;
+    buildingId?: string | undefined;
 }

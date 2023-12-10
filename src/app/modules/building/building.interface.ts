@@ -1,3 +1,3 @@
 export type IBuildingFilterRequest = {
-  searchTerm?: string
+    searchTerm?: string
 }
