@@ -21,10 +21,10 @@ const getAllFromDB = async (
     const { page, limit, skip } = paginationHelpers.calculatePagination(options);
     const { searchTerm } = filters;
 
-    const andConditons = [];
+    const andConditions = [];
 
     if (searchTerm) {
-        andConditons.push({
+        andConditions.push({
             OR: buildingSearchableFields.map((field) => ({
                 [field]: {
                     contains: searchTerm,
@@ -34,13 +34,13 @@ const getAllFromDB = async (
         })
     }
 
-    const whereConditons: Prisma.BuildingWhereInput =
-        andConditons.length > 0 ? { AND: andConditons } : {};
+    const whereConditions: Prisma.BuildingWhereInput =
+        andConditions.length > 0 ? { AND: andConditions } : {};
 
     const result = await prisma.building.findMany({
         skip,
         take: limit,
-        where: whereConditons,
+        where: whereConditions,
         orderBy: options.sortBy && options.sortOrder
             ? {
                 [options.sortBy]: options.sortOrder
@@ -50,7 +50,7 @@ const getAllFromDB = async (
             }
     });
     const total = await prisma.building.count({
-        where: whereConditons
+        where: whereConditions
     })
 
     return {

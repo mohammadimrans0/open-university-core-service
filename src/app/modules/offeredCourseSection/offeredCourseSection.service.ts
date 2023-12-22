@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OfferedCourseSection, Prisma } from "@prisma/client";
 import httpStatus from "http-status";
 import ApiError from "../../../errors/ApiError";
@@ -79,7 +80,7 @@ const insertIntoDB = async (payload: IOfferedCourseSectionCreate): Promise<Offer
                     course: true
                 }
             },
-            offeredCourseClassSchedule: {
+            offeredCourseClassSchedules: {
                 include: {
                     room: {
                         include: {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PaymentStatus, Prisma, PrismaClient, StudentSemesterPayment } from "@prisma/client";
 import { DefaultArgs, PrismaClientOptions } from "@prisma/client/runtime/library";
 import axios from "axios";
@@ -183,6 +184,7 @@ const initiatePayment = async (payload: any, user: any) => {
     }
 
     let payableAmount = 0;
+    
     if (
         payload.paymentType === 'PARTIAL' && studentSemesterPayment.totalPaidAmount === 0
     ) {
@@ -212,6 +214,7 @@ const initiatePayment = async (payload: any, user: any) => {
         address: "Dhaka, Bangladesh",
         phone: student.contactNo
     });
+    
     return {
         paymentUrl: paymentResponse.data,
         paymentDetails: isPendingPaymentExist
@@ -226,7 +229,7 @@ const completePayment = async (payload: { transactionId: string }) => {
     });
 
     if (!paymentDetails) {
-        throw new ApiError(httpStatus.BAD_REQUEST, "Payment details not foundd!")
+        throw new ApiError(httpStatus.BAD_REQUEST, "Payment details not found!")
     }
 
     if (paymentDetails.isPaid) {

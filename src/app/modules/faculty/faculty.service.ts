@@ -6,6 +6,7 @@ import { IPaginationOptions } from "../../../interfaces/pagination";
 import prisma from "../../../shared/prisma";
 import { facultyRelationalFields, facultyRelationalFieldsMapper, facultySearchableFields } from "./faculty.constants";
 import { FacultyCreatedEvent, IFacultyFilterRequest, IFacultyMyCourseStudentsRequest } from "./faculty.interface";
+import { infoLog } from "../../../shared/logger";
 
 const insertIntoDB = async (data: Faculty): Promise<Faculty> => {
     const result = await prisma.faculty.create({
@@ -200,7 +201,7 @@ const myCourses = async (
 
     const offeredCourseSections = await prisma.offeredCourseSection.findMany({
         where: {
-            offeredCourseClassSchedule: {
+            offeredCourseClassSchedules: {
                 some: {
                     faculty: {
                         facultyId: authUser.userId
@@ -221,7 +222,7 @@ const myCourses = async (
                     course: true
                 }
             },
-            offeredCourseClassSchedule: {
+            offeredCourseClassSchedules: {
                 include: {
                     room: {
                         include: {
@@ -234,7 +235,6 @@ const myCourses = async (
     });
 
     const courseAndSchedule = offeredCourseSections.reduce((acc: any, obj: any) => {
-        //console.log(obj)
 
         const course = obj.offeredCourse.course;
         const classSchedules = obj.offeredCourseClassSchedules

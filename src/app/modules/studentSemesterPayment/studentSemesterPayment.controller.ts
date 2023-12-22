@@ -39,7 +39,7 @@ const getMySemesterPayments = catchAsync(async (req: Request, res: Response) => 
 
 const initiatePayment = catchAsync(async (req: Request, res: Response) => {
     const user = (req as any).user;
-    console.log(user);
+    // console.log(user);
     const result = await StudentSemesterPaymentService.initiatePayment(req.body, user);
     sendResponse(res, {
         statusCode: httpStatus.OK,
@@ -48,6 +48,7 @@ const initiatePayment = catchAsync(async (req: Request, res: Response) => {
         data: result
     })
 })
+
 const completePayment = catchAsync(async (req: Request, res: Response) => {
     const result = await StudentSemesterPaymentService.completePayment(req.body);
     sendResponse(res, {

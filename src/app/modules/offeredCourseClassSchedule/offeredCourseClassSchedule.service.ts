@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { OfferedCourseClassSchedule, Prisma } from "@prisma/client";
 import { paginationHelpers } from "../../../helpers/paginationHelper";
 import { IGenericResponse } from "../../../interfaces/common";
 import { IPaginationOptions } from "../../../interfaces/pagination";
 import prisma from "../../../shared/prisma";
 import { offeredCourseClassScheduleRelationalFields, offeredCourseClassScheduleRelationalFieldsMapper, offeredCourseClassScheduleSearchableFields } from "./offeredCourseClassSchedule.constants";
-import { IOfferedCourseClassScheduleFilterRequiest } from "./offeredCourseClassSchedule.interface";
+import { IOfferedCourseClassScheduleFilterRequest } from "./offeredCourseClassSchedule.interface";
 import { OfferedCourseClassScheduleUtils } from "./offeredCourseClassSchedule.utils";
 
 const insertIntoDB = async (data: OfferedCourseClassSchedule): Promise<OfferedCourseClassSchedule> => {
@@ -28,7 +29,7 @@ const insertIntoDB = async (data: OfferedCourseClassSchedule): Promise<OfferedCo
 }
 
 const getAllFromDB = async (
-    filters: IOfferedCourseClassScheduleFilterRequiest,
+    filters: IOfferedCourseClassScheduleFilterRequest,
     options: IPaginationOptions
 ): Promise<IGenericResponse<OfferedCourseClassSchedule[]>> => {
     const { limit, page, skip } = paginationHelpers.calculatePagination(options);

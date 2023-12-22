@@ -1,4 +1,4 @@
-export type IOfferedCourseClassScheduleFilterRequiest = {
+export type IOfferedCourseClassScheduleFilterRequest = {
     searchTerm?: string | null,
     offeredCourseSectionId?: string | null,
     roomId?: string | null,

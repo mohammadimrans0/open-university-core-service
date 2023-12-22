@@ -12,9 +12,6 @@ import { courseSearchableFields } from "./course.constants";
 const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
     const { preRequisiteCourses, ...courseData } = data;
 
-    console.log("course data", courseData);
-    console.log("pre requisite course data: ", preRequisiteCourses)
-
     const newCourse = await prisma.$transaction(async (transactionClient) => {
         const result = await transactionClient.course.create({
             data: courseData
@@ -30,13 +27,13 @@ const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
             await asyncForEach(
                 preRequisiteCourses,
                 async (preRequisiteCourse: IPrerequisiteCourseRequest) => {
-                    const createPrerequisite = await transactionClient.courseToPrerequisite.create({
+                    await transactionClient.courseToPrerequisite.create({
                         data: {
                             courseId: result.id,
                             preRequisiteId: preRequisiteCourse.courseId
                         }
                     })
-                    console.log(createPrerequisite)
+                    
                 }
             )
         }
@@ -265,7 +262,7 @@ const deleteByIdFromDB = async (id: string): Promise<Course> => {
     return result;
 };
 
-const assignFaculies = async (
+const assignFaculties = async (
     id: string,
     payload: string[]
 ): Promise<CourseFaculty[]> => {
@@ -319,6 +316,6 @@ export const CourseService = {
     getByIdFromDB,
     deleteByIdFromDB,
     updateOneInDB,
-    assignFaculies,
+    assignFaculties,
     removeFaculties
 }

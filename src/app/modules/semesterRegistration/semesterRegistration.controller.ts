@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
@@ -112,14 +113,14 @@ const confirmMyRegistration = catchAsync(async (req: Request, res: Response) => 
 })
 
 const getMyRegistration = catchAsync(async (req: Request, res: Response) => {
-    console.log("get my reg")
+    
     const user = (req as any).user;
     const result = await SemesterRegistrationService.getMyRegistration(user.userId)
-    console.log(result)
+    
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'My registration data fatched!',
+        message: 'My registration data fetched!',
         data: result
     });
 })
@@ -137,13 +138,13 @@ const startNewSemester = catchAsync(async (req: Request, res: Response) => {
 })
 
 
-const getMySemesterRegCouses = catchAsync(async (req: Request, res: Response) => {
+const getMySemesterRegCourses = catchAsync(async (req: Request, res: Response) => {
     const user = (req as any).user;
-    const result = await SemesterRegistrationService.getMySemesterRegCouses(user.userId)
+    const result = await SemesterRegistrationService.getMySemesterRegCourses(user.userId)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'My registration courses data fatched!',
+        message: 'My registration courses data fetched!',
         data: result
     });
 })
@@ -161,5 +162,5 @@ export const SemesterRegistrationController = {
     confirmMyRegistration,
     getMyRegistration,
     startNewSemester,
-    getMySemesterRegCouses
+    getMySemesterRegCourses
 }

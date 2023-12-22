@@ -54,7 +54,7 @@ const getMyCourseMarks = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-export const StudentEnrolledCourseMarkConroller = {
+export const StudentEnrolledCourseMarkController = {
     getAllFromDB,
     updateStudentMarks,
     updateFinalMarks,

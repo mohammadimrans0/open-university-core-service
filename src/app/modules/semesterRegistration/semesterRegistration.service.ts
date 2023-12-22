@@ -30,7 +30,7 @@ const insertIntoDB = async (data: SemesterRegistration): Promise<SemesterRegistr
 
     if (isAnySemesterRegUpcomingOrOngoing) {
         throw new ApiError(httpStatus.BAD_REQUEST,
-            `Thers is already an ${isAnySemesterRegUpcomingOrOngoing.status} registration.`
+            `There is already an ${isAnySemesterRegUpcomingOrOngoing.status} registration.`
         )
     }
 
@@ -131,7 +131,6 @@ const updateOneInDB = async (
     payload: Partial<SemesterRegistration>
 ): Promise<SemesterRegistration> => {
 
-    console.log(payload.status);
     const isExist = await prisma.semesterRegistration.findUnique({
         where: {
             id
@@ -465,8 +464,7 @@ const startNewSemester = async (
     }
 }
 
-
-const getMySemesterRegCouses = async (
+const getMySemesterRegCourses = async (
     authUserId: string
 ) => {
     const student = await prisma.student.findFirst({
@@ -487,7 +485,6 @@ const getMySemesterRegCouses = async (
             academicSemester: true
         }
     });
-    console.log(semesterRegistration)
 
     if (!semesterRegistration) {
         throw new ApiError(httpStatus.BAD_REQUEST, "No semester registration not found!")
@@ -519,7 +516,6 @@ const getMySemesterRegCouses = async (
             offeredCourseSection: true
         }
     });
-    console.log(studentCurrentSemesterTakenCourse)
 
     const offeredCourse = await prisma.offeredCourse.findMany({
         where: {
@@ -556,7 +552,6 @@ const getMySemesterRegCouses = async (
         }
     });
 
-    //console.log("Offered course: ", offeredCourse)
     const availableCourses = SemesterRegistrationUtils.getAvailableCourses(offeredCourse, studentCompletedCourse, studentCurrentSemesterTakenCourse);
     return availableCourses;
 }
@@ -574,5 +569,5 @@ export const SemesterRegistrationService = {
     confirmMyRegistration,
     getMyRegistration,
     startNewSemester,
-    getMySemesterRegCouses
+    getMySemesterRegCourses
 }
